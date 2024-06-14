@@ -1,0 +1,1 @@
+# A django project for a logistics management system
