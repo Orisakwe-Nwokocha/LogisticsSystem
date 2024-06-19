@@ -57,8 +57,6 @@ class ProgressReport(models.Model):
     tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE, related_name="progress_reports")
 
 
-# Create your models here.
-
 
 
 

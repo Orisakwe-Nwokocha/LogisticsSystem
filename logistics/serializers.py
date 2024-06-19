@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 from rest_framework import serializers
 from .models import Package
+from django.contrib.auth.models import User
 
 
 class PackageSerializer(serializers.ModelSerializer):
@@ -8,9 +8,6 @@ class PackageSerializer(serializers.ModelSerializer):
         model = Package
         fields = ['tracking_number', 'weight',
                   'delivery_date', 'status']
-=======
-from django.contrib.auth.models import User
-from rest_framework import serializers
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -22,4 +19,3 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
->>>>>>> 41fbeba (Deliver_Information_Model)
