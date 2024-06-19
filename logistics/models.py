@@ -10,12 +10,12 @@ class Package(models.Model):
         ('S', 'SUCCESSFUL'),
         ('F', 'FAILED'),
     ]
-    tracking_number = models.CharField(max_length=50,
-                                       unique=True)
-    sender_name = models.CharField(max_length=20)
-    sender_address = models.TextField()
-    receiver_name = models.CharField(max_length=20)
-    receiver_address = models.TextField()
+    tracking_number = models.CharField(max_length=15,
+                                       unique=True,
+                                       default=generate_tracking_number)
+
+    DeliveryInformation = models.ForeignKey(DeliveryInformation, on_delete=models.CASCADE)
+
     weight = models.DecimalField(max_digits=10,
                                  decimal_places=2)
     delivery_date = models.DateField(null=True,
@@ -26,13 +26,16 @@ class Package(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return f"Package {self.tracking_number} from {self.sender_name} to {self.receiver_name} with status {self.status}"
-
-
 
 class Driver:
     pass
+
+
+class DeliveryInformation(models.Model):
+    sender_name = models.CharField(max_length=20)
+    sender_address = models.TextField()
+    receiver_name = models.CharField(max_length=20)
+    receiver_address = models.TextField()
 
 
 class ProgressReport(models.Model):
