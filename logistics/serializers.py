@@ -5,9 +5,7 @@ from .models import Package
 class PackageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Package
-        fields = ['tracking_number', 'sender_name',
-                  'sender_address', 'receiver_name',
-                  'receiver_address', 'weight',
+        fields = ['tracking_number', 'weight',
                   'delivery_date', 'status']
 
 
