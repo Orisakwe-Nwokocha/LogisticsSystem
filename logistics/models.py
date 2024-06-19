@@ -5,12 +5,8 @@ from logistics.utility import generate_tracking_number
 
 # Create your models here.
 
-
 class DeliveryInformation(models.Model):
-    sender_name = models.CharField(max_length=20)
-    sender_address = models.TextField()
-    receiver_name = models.CharField(max_length=20)
-    receiver_address = models.TextField()
+    pass
 
 
 class Package(models.Model):
@@ -22,32 +18,27 @@ class Package(models.Model):
     tracking_number = models.CharField(max_length=15,
                                        unique=True,
                                        default=generate_tracking_number)
-
     deliveryInformation = models.ForeignKey(DeliveryInformation, on_delete=models.CASCADE)
-
-    weight = models.DecimalField(max_digits=10,
-                                 decimal_places=2)
-    delivery_date = models.DateField(null=True,
-                                     blank=True)
-    status = models.CharField(max_length=50,
+    weight = models.DecimalField(max_digits=10, decimal_places=2)
+    delivery_date = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(max_length=15,
                               choices=STATUS,
                               default='P')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class Driver:
+class Driver(models.Model):
     pass
-
-
-class ProgressReport(models.Model):
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)
-    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
-    location = models.TextField()
-    description = models.TextField()
-    report_date = models.DateTimeField(auto_now_add=True)
 
 
 class Tracker(models.Model):
     package = models.ForeignKey(Package, on_delete=models.CASCADE)
-    progress_reports = models.ManyToManyField(ProgressReport)
+
+
+class ProgressReport(models.Model):
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    location = models.TextField()
+    description = models.TextField()
+    report_date = models.DateTimeField(auto_now_add=True)
+    tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE, related_name="progress_reports")

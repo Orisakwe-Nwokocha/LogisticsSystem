@@ -7,5 +7,3 @@ class PackageSerializer(serializers.ModelSerializer):
         model = Package
         fields = ['tracking_number', 'weight',
                   'delivery_date', 'status']
-
-
