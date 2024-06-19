@@ -14,7 +14,7 @@ class Package(models.Model):
                                        unique=True,
                                        default=generate_tracking_number)
 
-    DeliveryInformation = models.ForeignKey(DeliveryInformation, on_delete=models.CASCADE)
+    deliveryInformation = models.ForeignKey(DeliveryInformation, on_delete=models.CASCADE)
 
     weight = models.DecimalField(max_digits=10,
                                  decimal_places=2)
