@@ -1,7 +1,16 @@
 from django.db import models
 
+from logistics.utility import generate_tracking_number
+
 
 # Create your models here.
+
+
+class DeliveryInformation(models.Model):
+    sender_name = models.CharField(max_length=20)
+    sender_address = models.TextField()
+    receiver_name = models.CharField(max_length=20)
+    receiver_address = models.TextField()
 
 
 class Package(models.Model):
@@ -29,13 +38,6 @@ class Package(models.Model):
 
 class Driver:
     pass
-
-
-class DeliveryInformation(models.Model):
-    sender_name = models.CharField(max_length=20)
-    sender_address = models.TextField()
-    receiver_name = models.CharField(max_length=20)
-    receiver_address = models.TextField()
 
 
 class ProgressReport(models.Model):
