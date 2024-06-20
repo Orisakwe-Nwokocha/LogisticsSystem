@@ -37,7 +37,10 @@ class Package(models.Model):
 
 
 class Driver(models.Model):
-    pass
+    driver_name = models.CharField(max_length= 250 )
+    availability = models.BooleanField(default= True)
+    phone_number = models.CharField(max_length= 11)
+    driver_address = models.CharField(max_length=255)
 
 
 class Tracker(models.Model):
