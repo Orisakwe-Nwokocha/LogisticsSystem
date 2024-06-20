@@ -37,10 +37,12 @@ class Package(models.Model):
 
 
 class Driver(models.Model):
+    username = models.CharField(max_length= 250)
+    password = models.TextField(max_length= 100)
     driver_name = models.CharField(max_length= 250 )
     availability = models.BooleanField(default= True)
     phone_number = models.CharField(max_length= 11)
-    driver_address = models.CharField(max_length=255)
+    driver_address = models.TextField(max_length=255)
 
 
 class Tracker(models.Model):
