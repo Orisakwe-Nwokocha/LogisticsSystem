@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Package
+from .models import Package, Driver
 from django.contrib.auth.models import User
 
 
@@ -19,3 +19,9 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+
+
+class DriverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Driver
+        fields = ["driver_name", "driver_address", "phone_number", "availaibility"]
