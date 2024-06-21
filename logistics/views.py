@@ -12,9 +12,3 @@ from rest_framework.permissions import AllowAny
 @api_view()
 def home(request):
     return Response("Hello, world")
-
-
-class CreateUserView(generics.CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [AllowAny]

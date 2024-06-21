@@ -1,5 +1,4 @@
 from django.db import models
-
 from logistics.utility import generate_tracking_number
 
 
@@ -29,7 +28,7 @@ class Package(models.Model):
     tracking_number = models.CharField(max_length=15, unique=True,
                                        default=generate_tracking_number)
     deliveryInformation = models.ForeignKey(DeliveryInformation, on_delete=models.CASCADE)
-    weight = models.DecimalField(max_digits=10, decimal_places=2)
+    weight = models.DecimalField(max_digits=5, decimal_places=2)
     delivery_date = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=15, choices=STATUS, default='P')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -37,7 +36,14 @@ class Package(models.Model):
 
 
 class Driver(models.Model):
-    pass
+    driver_name = models.CharField(max_length=250)
+    username = models.CharField(max_length=250)
+    password = models.TextField(max_length=100)
+    phone_number = models.CharField(max_length=11)
+    availability = models.BooleanField(default=True)
+    driver_address = models.TextField(max_length=255)
+    date_registered = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
 
 
 class Tracker(models.Model):
