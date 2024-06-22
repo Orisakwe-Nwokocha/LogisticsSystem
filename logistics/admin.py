@@ -26,7 +26,7 @@ class DriverAdmin(admin.ModelAdmin):
     list_display = ['driver_name', 'driver_address', 'username', 'phone_number', 'availability', 'date_registered']
     list_per_page = 10
     search_fields = ['driver_name', 'driver_address', 'username', 'phone_number', 'availability', 'date_registered']
-    list_editable = ['driver_name', 'driver_address', 'availability', ]
+    list_editable = ['username', 'driver_address', 'availability', ]
 
 
 
